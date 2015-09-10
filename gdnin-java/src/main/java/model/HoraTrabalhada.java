@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +15,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Table(name="hora_trabalhada")
-public class HoraTrabalhada {
+public class HoraTrabalhada implements Serializable {
+	
+	private static final long serialVersionUID = 7526472295622776147L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

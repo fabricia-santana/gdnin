@@ -21,13 +21,12 @@ app.controller('DemandasController', function($scope, $http)
 		}).error(function(){
 			$scope.errorLista = {descricao : 'Error ao carregar as Demandas'};
 		});
-
 	}
 
 	$scope.getListaDemandas();
 
 	$scope.getObservacoes = function(demanda){
-		var url = '/gdnin/protected/demandas/listaObservacoes/';
+		var url = '/gdnin/protected/observacao/listaObservacoes/';
 		$http.get(url + demanda.id).success(function(data){	
 		    $scope.listaObservacoes = data;		
 			$scope.demanda.observacao = angular.copy(data[0]);	
@@ -36,6 +35,15 @@ app.controller('DemandasController', function($scope, $http)
 		});	
 	}	
 
+	$scope.getHorasTrabalhadas = function(demanda){
+		var url ='/gdnin/protected/horaTrabalhada/listaHorasTrabalhadas/';
+		$http.get(url + demanda.id).success(function(data){
+			$scope.listaHorasTrabalhadas = data;
+		}).error(function (){
+			$scope.errorLista = {descricao: 'Error ao carregar Horas Trabalhadas'};
+		});
+	}
+
 	$scope.selecionaDemanda = function(demanda){		    
 		var selecionaDemanda = angular.copy(demanda);
 		$scope.demanda = selecionaDemanda;
@@ -43,7 +51,7 @@ app.controller('DemandasController', function($scope, $http)
 	}
 
 	$scope.getlistaClassificacao = function(){
-		$http.get('/gdnin/protected/demandas/listClassificacao/').success(function(data)
+		$http.get('/gdnin/protected/classificacao/listClassificacao/').success(function(data)
 		{
 			$scope.listaClassificacao = data;
 
@@ -55,7 +63,7 @@ app.controller('DemandasController', function($scope, $http)
 	$scope.getlistaClassificacao();
 
 	$scope.getListaStatus = function(){
-		$http.get('/gdnin/protected/demandas/listStatus/').success(function(data)
+		$http.get('/gdnin/protected/status/listStatus/').success(function(data)
 		{
 			$scope.listaStatus = data;
 
@@ -67,7 +75,7 @@ app.controller('DemandasController', function($scope, $http)
 	$scope.getListaStatus();
 
 	$scope.getListaResponsavelAcompanhamento = function(){
-		$http.get('/gdnin/protected/demandas/listaResponsavelAcompanhamento/').success(function(data)
+		$http.get('/gdnin/protected/usuario/listaResponsavelAcompanhamento/').success(function(data)
 		{
 			$scope.listaResponsaveis = data;
 		}).error(function(){

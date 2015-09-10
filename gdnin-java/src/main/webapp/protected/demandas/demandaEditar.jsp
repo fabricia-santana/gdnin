@@ -141,9 +141,9 @@
 			            	<div class="panel-heading" role="tab" id="headingTwo">
      							<h4 class="panel-title">
         							<a class="collapsed" role="button" 
-        							 data-toggle="collapse" data-parent="#accordion" 
-        							 href="#collapseObservacoes" aria-expanded="false" 
-        							 aria-controls="collapseObservacoes">
+        							   data-toggle="collapse" data-parent="#accordion" 
+        							   href="#collapseObservacoes" aria-expanded="false" 
+        							   aria-controls="collapseObservacoes">
           								Histórico Observações
         							</a>
       							</h4>
@@ -162,9 +162,10 @@
     					<div class="panel panel-default">
     						<div class="panel-heading" role="tab" id="headingThree">
     							<h4 class="panel-title">
-    								<a class="collapsed" data-parent="#accordion" 
-    								 href="#collapseCustos" aria-expanded="false"
-    								 aria-controls="collapseCustos">
+    								<a class="collapsed" role="button"  
+    								   data-toggle="collapse" data-parent="#accordion"
+    								   href="#collapseCustos" aria-expanded="false"
+    								   aria-controls="collapseCustos">
     								 	Custos
     								 </a>
     							</h4>
@@ -173,7 +174,21 @@
     						     role="tabpanel" aria-labelledby="headingThree">
     						 	<div class="panel-body">
     						 		<div class="form-inline">    						 			
-    						 			<label class="col-sm-2 control-label">Horas Estimadas:{{}} </label>
+    						 			<label class="control-label">
+    						 				Horas Estimadas:{{demanda.horasEstimadas}} 
+    						 			</label>
+    						 		</div>
+    						 		<div>
+    						 			<table class="table">
+    						 				<thead>
+    						 					<th>Mês/Ano</th>
+    						 					<th>Horas</th>
+    						 				</thead>
+    						 				<tbody>
+    						 					
+    						 				</tbody>
+    						 				
+    						 			</table>
     						 		</div>
     						 	</div>
     						</div>

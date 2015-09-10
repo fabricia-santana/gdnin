@@ -7,6 +7,8 @@ app.controller('DemandasController', function($scope, $http)
 
 	$scope.isAddObservacao = true;
 
+	$scope.obs = "";
+
 	$scope.getListaDemandas = function(){
 		var config = {params: {pagina: $scope.getPagina}};
 
@@ -26,10 +28,12 @@ app.controller('DemandasController', function($scope, $http)
 
 	$scope.getObservacoes = function(demanda){
 		var url = '/gdnin/protected/demandas/listaObservacoes/';
-		$http.get(url + demanda.id).success(function(data){
-			$scope.observacoes = data;			
-			$scope.demanda.observacao = angular.copy(data[0]);			
-		})
+		$http.get(url + demanda.id).success(function(data){	
+		    $scope.listaObservacoes = data;		
+			$scope.demanda.observacao = angular.copy(data[0]);	
+		}).error(function(){
+			$scope.errorLista = {descricao: 'Error ao carregar Observações'};
+		});	
 	}	
 
 	$scope.selecionaDemanda = function(demanda){		    
@@ -76,14 +80,14 @@ app.controller('DemandasController', function($scope, $http)
 	$scope.adicionaObservacao = function(){		
 		$scope.isAddObservacao = false;
 		$scope.demanda.observacao.observacao = "";
-	}
+	}	
 
-	   $(document).ready(function () {
+	$(document).ready(function () {
       // Associa o evento do popover ao clicar no link.
       $('#demandaObservacao').popover({
-         trigger: 'manual',
+         trigger: 'focus',
          html: true,
-         title: 'Histórico Observações'
+         title: 'Histórico Observações'         
           // Adiciona o conteúdo da div oculta para dentro do popover.
       }).click(function (e) {
          e.preventDefault();

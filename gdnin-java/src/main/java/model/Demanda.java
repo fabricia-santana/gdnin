@@ -89,6 +89,8 @@ public class Demanda implements Serializable {
 	@Transient
 	private Observacao observacao;
 	
+	
+	
 	public Demanda(){
 		
 	}

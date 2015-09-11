@@ -1,6 +1,9 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 @Table(name="custo")
-public class Custo {
+public class Custo implements Serializable {
+	
+	private static final long serialVersionUID = 7526472295622776147L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,6 +30,11 @@ public class Custo {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_tipo_custo")
 	private TipoCusto tipoCusto;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_demanda")
+	@JsonIgnore
+	private Demanda demanda;
 
 	public Integer getId() {
 		return id;

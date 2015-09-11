@@ -44,10 +44,21 @@ app.controller('DemandasController', function($scope, $http)
 		});
 	}
 
+	$scope.getCustos = function(demanda){
+		var url = '/gdnin/protected/custo/listaCustos/';
+		$http.get(url + demanda.id).success(function(data){
+			$scope.listaCustos = data;
+		}).error(function(){
+			$scope.errorLista = {descricao: 'Error ao carregar Custos'};
+		});
+	}
+
 	$scope.selecionaDemanda = function(demanda){		    
 		var selecionaDemanda = angular.copy(demanda);
 		$scope.demanda = selecionaDemanda;
-		$scope.getObservacoes(demanda);		
+		$scope.getObservacoes(demanda);	
+		$scope.getHorasTrabalhadas(demanda);
+		$scope.getCustos(demanda);	
 	}
 
 	$scope.getlistaClassificacao = function(){

@@ -1,9 +1,11 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
 @Table(name="hora_trabalhada")
 public class HoraTrabalhada implements Serializable {
 	
@@ -26,6 +29,8 @@ public class HoraTrabalhada implements Serializable {
 	
 	@Column(name="mes_ano")
 	private Date mesAno;
+	
+	private Double horas;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_demanda")
@@ -56,6 +61,20 @@ public class HoraTrabalhada implements Serializable {
 		this.demanda = demanda;
 	}
 	
-	
+	public Double getHoras() {
+		return horas;
+	}
+
+	public void setHoras(Double horas) {
+		this.horas = horas;
+	}
+
+	public String getMesAnoFormatted(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(this.mesAno);
+		Integer mes = calendar.get(Calendar.MONTH);
+		Integer ano = calendar.get(Calendar.YEAR);
+		return mes.toString() + '/' + ano.toString();
+	}
 
 }

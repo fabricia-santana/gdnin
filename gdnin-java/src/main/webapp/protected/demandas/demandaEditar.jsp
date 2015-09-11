@@ -178,16 +178,34 @@
     						 				Horas Estimadas:{{demanda.horasEstimadas}} 
     						 			</label>
     						 		</div>
-    						 		<div>
+    						 		<div class="form-inline">
     						 			<table class="table">
     						 				<thead>
     						 					<th>Mês/Ano</th>
     						 					<th>Horas</th>
     						 				</thead>
     						 				<tbody>
-    						 					
+    						 					<tr ng-repeat="horaTrabalhada in listaHorasTrabalhadas">
+    						 						<td>{{horaTrabalhada.mesAnoFormatted}}</td>
+    						 						<td>{{horaTrabalhada.horas}}</td>
+    						 					</tr>		
+    						 				</tbody>    						 				
+    						 			</table>
+    						 			<table class="table">
+    						 				<thead>
+    						 					<th>Tipo de Custo</th>
+    						 					<th>Custo</th>
+    						 				</thead>
+    						 				<tbody>
+    						 					<tr ng-repeat="custo in listaCustos">
+    						 						<td>{{custo.tipoCusto.descricao}}</td>
+    						 						<td>{{custo.custo}}</td>	
+    						 					</tr>
+    						 					<tr>
+    						 						<td>Total</td>
+    						 						<td></td>
+    						 					</tr>
     						 				</tbody>
-    						 				
     						 			</table>
     						 		</div>
     						 	</div>

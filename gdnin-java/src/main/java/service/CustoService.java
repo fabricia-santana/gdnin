@@ -17,5 +17,9 @@ public class CustoService {
 	public List<Custo> listCustosByDemanda(Integer demandaId){
 		return repository.findByDemandaId(demandaId);
 	}
+	
+	public Float getTotalCustosByDemandaId(Integer demandaId){
+		return repository.getTotalCustosByDemandaId(demandaId);
+	}
 
 }

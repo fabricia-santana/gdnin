@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tipo_custo")
 public class TipoCusto {
@@ -22,6 +24,7 @@ public class TipoCusto {
 	
 	private String descricao;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="tipoCusto", fetch=FetchType.LAZY)
 	private List<Custo> custos;
 

@@ -5,9 +5,11 @@ app.controller('DemandasController', function($scope, $http)
 
 	$scope.getPagina = 0;
 
-	$scope.isAddObservacao = true;
+	$scope.isAlterado = false;
 
-	$scope.obs = "";
+	$scope.onChangeResponsavel = function(){
+		$scope.isAlterado = true;
+	}
 
 	$scope.getListaDemandas = function(){
 		var config = {params: {pagina: $scope.getPagina}};
@@ -47,7 +49,8 @@ app.controller('DemandasController', function($scope, $http)
 	$scope.getCustos = function(demanda){
 		var url = '/gdnin/protected/custo/listaCustos/';
 		$http.get(url + demanda.id).success(function(data){
-			$scope.listaCustos = data;
+			$scope.listaCustos = data.custos;
+			$scope.custoTotal = data.total;
 		}).error(function(){
 			$scope.errorLista = {descricao: 'Error ao carregar Custos'};
 		});
@@ -94,12 +97,7 @@ app.controller('DemandasController', function($scope, $http)
 		});
 	}
 
-	$scope.getListaResponsavelAcompanhamento();
-
-	$scope.adicionaObservacao = function(){		
-		$scope.isAddObservacao = false;
-		$scope.demanda.observacao.observacao = "";
-	}	
+	$scope.getListaResponsavelAcompanhamento();	
 
 	$(document).ready(function () {
       // Associa o evento do popover ao clicar no link.
@@ -115,5 +113,7 @@ app.controller('DemandasController', function($scope, $http)
       }); 
     
    });
+
+	$scope.
 
 });

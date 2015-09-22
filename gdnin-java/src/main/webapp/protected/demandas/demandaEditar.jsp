@@ -42,7 +42,7 @@
 						                	<div class="col-sm-7">		                    			
 						                		<textarea class="form-control" ng-model="demanda.descricao" 
 						                		          name="descricao" value="{{demanda.descricao}}" 
-						                		          readonly="{{demanda.isInterna}}" rows="3"></textarea>		
+						                		          readonly="{{demanda.isInterna}}" rows="2"></textarea>		
 						                	</div>
 						                </div>
 						                    	
@@ -60,7 +60,7 @@
 						                		</div>		                			
 						                		<div>
 						                			<label class="col-sm-2 control-label">Status:</label>				
-						                			<div class="col-sm-3">
+						                			<div class="col-sm-2">
 						                				<select class="form-control" readonly="{{demanda.isInterna}}" disabled="{{demanda.isInterna}}">
 						                    				<option ng-repeat="status in listaStatus" value="{{demanda.status.descricao}}">
 						                    						{{status.descricao}}
@@ -104,7 +104,6 @@
 						                		<input class="form-control" type="text"
 						                               ng-model="demanda.dataFinalizada" name="dataFinalizada"
 						                               value="{{demanda.dataFinalizada}}" readonly="{{demanda.isInterna}}"/>
-						                    		
 						                	</div>	
 						                </div>		                         	
 
@@ -117,22 +116,24 @@
 						                	</div>
 						                </div>
 
-						                <div class="form-inline">
-						                	<label class="col-sm-2 control-label">Observação:</label>					                		
-						                	
-						                	<div class="col-sm-10">
+						                <div class="form-group">
+						                	<label class="col-sm-2 control-label">Observação:</label>					              		
+						                	<div class="col-sm-7">
 						                		<textarea id="txObservacao" class="form-control" 
 						                		          ng-model="demanda.observacao.observacao"
 						                	              name="observacao" value="{{demanda.observacao.observacao}}" 
-						                	              ng-disabled="isAddObservacao" rows="2">        	          
-						                		</textarea>
-						                			<a role="button" title="Adicionar Observação" 
-						                		     ng-click="adicionaObservacao();">
-						                				<i class="glyphicon glyphicon-plus-sign"></i>	
-						                			</a>    	
+						                	              rows="4">        	          
+						                		</textarea>						                			   	
 						                		</div>        		              			               				
-						                	</div>						                	
-						            </form>						            
+						                	</div>	
+						                	<div align="center">
+						                		<button id="salvaDemanda" class="btn btn-default btn-sm" 
+						                		        disabled="{{isAlterado}}" onclick="salvarDemanda()">
+						                			 Salvar
+						                		</button>                 			 					                             			   		  
+						                		       			                					                			
+						                	</div>   				                	
+						            </form>							            				            
 						        </div> <!-- div panel-body -->
 				            </div> <!-- div panel-collapse -->
 			            </div> <!-- div panel-default -->
@@ -179,7 +180,7 @@
     						 			</label>
     						 		</div>
     						 		<div class="form-inline">
-    						 			<table class="table">
+    						 			<table class="table table-bordered">
     						 				<thead>
     						 					<th>Mês/Ano</th>
     						 					<th>Horas</th>
@@ -191,7 +192,7 @@
     						 					</tr>		
     						 				</tbody>    						 				
     						 			</table>
-    						 			<table class="table">
+    						 			<table class="table table-bordered">
     						 				<thead>
     						 					<th>Tipo de Custo</th>
     						 					<th>Custo</th>
@@ -203,7 +204,7 @@
     						 					</tr>
     						 					<tr>
     						 						<td>Total</td>
-    						 						<td></td>
+    						 						<td>{{custoTotal}}</td>
     						 					</tr>
     						 				</tbody>
     						 			</table>

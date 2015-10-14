@@ -1,9 +1,13 @@
 package controller;
 
+import model.Demanda;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,8 +36,11 @@ public class DemandasController {
 		return service.getListaDemandas(pagina, maxResults);
 	}
 	
-	
-	
+	@RequestMapping(value="update", method=RequestMethod.PUT, produces="application/json")
+	public ResponseEntity<?> update(@RequestBody Demanda demanda){
+		service.salvar(demanda);
+		return new ResponseEntity<String>("Salvo com Sucesso!", HttpStatus.OK);
+	}
 	
 
 }

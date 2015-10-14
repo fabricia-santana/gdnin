@@ -7,6 +7,7 @@
     	<div class="modal-content">
     		<div class="modal-header">
         		<h3 id="updateDemandasModalLabel" class="displayInLine">Editar Demanda</h3>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     		</div><!-- div modal-header -->
     		<div class="modal-body">
     			<div class="container-fluid">
@@ -110,29 +111,15 @@
 						                <div class="form-group">
 						                	<label class="col-sm-2 control-label">Responsável IN:</label>	
 						                	<div class="col-sm-7">
-						                		<select class="form-control">
-						                			<option ng-repeat="responsavel in listaResponsaveis">{{responsavel.nome}}</option>		                			
+						                		<select class="form-control" onchange="onChangeResponsavel()">
+						                			<option value="">--Selecione--</option>
+						                			<option value="{{demanda.responsavelAcompanhamento}}" 
+						                			        ng-repeat="responsavel in listaResponsaveis">
+						                			        	{{responsavel.nome}}
+						                			</option>		                			
 						                		</select>
 						                	</div>
-						                </div>
-
-						                <div class="form-group">
-						                	<label class="col-sm-2 control-label">Observação:</label>					              		
-						                	<div class="col-sm-7">
-						                		<textarea id="txObservacao" class="form-control" 
-						                		          ng-model="demanda.observacao.observacao"
-						                	              name="observacao" value="{{demanda.observacao.observacao}}" 
-						                	              rows="4">        	          
-						                		</textarea>						                			   	
-						                		</div>        		              			               				
-						                	</div>	
-						                	<div align="center">
-						                		<button id="salvaDemanda" class="btn btn-default btn-sm" 
-						                		        disabled="{{isAlterado}}" onclick="salvarDemanda()">
-						                			 Salvar
-						                		</button>                 			 					                             			   		  
-						                		       			                					                			
-						                	</div>   				                	
+						                </div>						                				                	
 						            </form>							            				            
 						        </div> <!-- div panel-body -->
 				            </div> <!-- div panel-collapse -->
@@ -215,6 +202,10 @@
 		            </div> <!-- div panel-group -->
     			</div> <!-- div container-fluid -->
     		</div><!-- div modal-body -->
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        		<button type="button" class="btn btn-primary" ng-click="salvarDemanda()">Salvar Alterações</button>
+      </div>
     	</div> <!-- div modal-content --> 	
 	</div><!-- div modal-dialog -->
 </div><!-- div fim -->

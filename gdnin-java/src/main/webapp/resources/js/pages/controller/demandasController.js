@@ -3,13 +3,7 @@ var app = angular.module('gdnin', []);
 app.controller('DemandasController', function($scope, $http)
 {
 
-	$scope.getPagina = 0;
-
-	$scope.isAlterado = false;
-
-	$scope.onChangeResponsavel = function(){
-		$scope.isAlterado = true;
-	}
+	$scope.getPagina = 0;	
 
 	$scope.getListaDemandas = function(){
 		var config = {params: {pagina: $scope.getPagina}};
@@ -97,9 +91,24 @@ app.controller('DemandasController', function($scope, $http)
 		});
 	}
 
-	$scope.getListaResponsavelAcompanhamento();	
+	$scope.getListaResponsavelAcompanhamento();
 
-	$(document).ready(function () {
+	$scope.salvarDemanda = function(){
+   	 var url = "/gdnin/protected/demandas/update"
+   	 $http.put(url, $scope.demanda).success(function(data){
+   	 	$scope.errorLista = {descricao: 'Error ao carregar Responsaveis Acompanhamento'};
+
+   	 }).error(function(){
+
+   	 });
+   }	
+
+   $scope.onChangeResponsavel = function(responsavel){
+
+   }
+
+	$(document).ready(function () {   
+
       // Associa o evento do popover ao clicar no link.
       $('#demandaObservacao').popover({
          trigger: 'focus',
@@ -113,7 +122,6 @@ app.controller('DemandasController', function($scope, $http)
       }); 
     
    });
-
-	$scope.
+  
 
 });

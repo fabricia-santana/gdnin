@@ -37,10 +37,10 @@ public class DemandaService {
     	DemandasListVO listaDemandas = new DemandasListVO(result.getTotalPages(), result.getTotalElements(), result.getContent());
     	return new ResponseEntity<DemandasListVO>(listaDemandas, HttpStatus.OK);
     }
-//
-//    public void save(Demanda contact) {
-//        contactRepository.save(contact);
-//    }
+
+    public void salvar(Demanda demanda) {
+        repository.save(demanda);
+    }
 //
 //    @Secured("ROLE_ADMIN")
 //    public void delete(int contactId) {

@@ -22,6 +22,6 @@ public class UsuarioService {
     }
     
     public List<Usuario> findByAnalisar(Boolean isAnalisar){
-    	return repository.findByAnalisar(isAnalisar);
+    	return repository.findByAnalisarOrderByNome(isAnalisar);
     }
 }
